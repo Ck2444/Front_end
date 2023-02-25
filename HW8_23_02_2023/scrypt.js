@@ -24,26 +24,26 @@ for (let index = 0; index < fruits.length; index++) {
 
 const arrWithObjects = [
     {
-        firstname: "Amelia",
-        lastname: "Miller",
+        first_name: "Amelia",
+        last_name: "Miller",
         age: 30
     },
 
     {
-        firstname: "Steve",
-        lastname: "Anderson",
+        first_name: "Steve",
+        last_name: "Anderson",
         age: 19
     },
 
     {
-        firstname: "Emily",
-        lastname: "Johnson",
+        firs_tname: "Emily",
+        last_name: "Johnson",
         age: 16
     },
 
     {
-        firstname: "Andrew",
-        lastname: "Davis",
+        first_name: "Andrew",
+        last_name: "Davis",
         age: 48
     }
 ];
@@ -55,15 +55,15 @@ for (let i = 0; i < arrWithObjects.length; i++) {
         userCard.classList.add("user-card");
 
         const name = document.createElement("p");
-        name.innerText = `Firstname: ${arrWithObjects[i].firstname}`;
+        name.innerText = `Firs tname: ${arrWithObjects[i].first_name};`;
         userCard.append(name);
 
         const surname = document.createElement("p");
-        surname.innerText = `Lastname: ${arrWithObjects[i].lastname}`;
+        surname.innerText = `Last name: ${arrWithObjects[i].last_name};`;
         userCard.append(surname);
 
         const age = document.createElement("p");
-        age.innerText = `Age: ${arrWithObjects[i].age}`;
+        age.innerText = `Age: ${arrWithObjects[i].age};`;
         userCard.append(age);
 
         div.appendChild(userCard);
