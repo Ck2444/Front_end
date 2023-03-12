@@ -71,6 +71,7 @@ button3.style.color = '#fff';
 button3.style.border = 'none';
 button3.style.borderRadius = '5px';
 button3.style.cursor = 'pointer';
+button3.style.marginBottom = '20px';
 document.body.append(button3);
 
 const square150 = document.querySelector("#mySquare2");
