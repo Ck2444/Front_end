@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        <!-- 1 уровень сложности: 
+   1. Классическая Queue - реализовать используя массив (Array)
+    pushToEnd(int data) - вставляет элемент в конец queue
+    remove() - удаляет элемент из начала queue
+    peek() - возвращает элемент из начала не удаляя его
+    isEmpty()
+    size()
+
+Hачало:
+public class Queue
+    private int[] arr;      // массив для хранения элементов queue
+    private int head;      // head указывает на первый элемент в queue
+    private int tail;       // tail часть указывает на последний элемент в queue
+    private int capacity;   // максимальная емкость queue
+    private int count;      // текущий размер queue
+
+// Конструктор для инициализации queue
+
+public Queue(int size)
+    {
+        arr = new int[size];
+        capacity = size;
+        head = 0;
+        tail = -1;
+        count = 0;
+    }
+// ?? ….. дальше самостоятельно -->
+    </p>
+</body>
+<script>
+    //Решение
+    class Queue {
+        constructor(size) {
+            this.arr = new Array(size);
+            this.capacity = size;
+            this.head = 0;
+            this.tail = -1;
+            this.count = 0;
+        }
+
+        pushToEnd(data) {
+            if (this.count === this.capacity) {
+                console.log("Очередь заполнена. Невозможно добавить элемент.");
+                return;
+            }
+            this.tail = (this.tail + 1) % this.capacity;
+            this.arr[this.tail] = data;
+            this.count++;
+        }
+
+        remove() {
+            if (this.count === 0) {
+                console.log("Очередь пуста. Невозможно удалить элемент.");
+                return;
+            }
+            const removed = this.arr[this.head];
+            this.head = (this.head + 1) % this.capacity;
+            this.count--;
+            return removed;
+        }
+
+        peek() {
+            if (this.count === 0) {
+                console.log("Очередь пуста.");
+                return;
+            }
+            return this.arr[this.head];
+        }
+
+        isEmpty() {
+            return this.count === 0;
+        }
+
+        size() {
+            return this.count;
+        }
+    }
+
+    // Пример использования
+
+    const queue = new Queue(5);
+    queue.pushToEnd(1);
+    queue.pushToEnd(2);
+    queue.pushToEnd(3);
+    console.log(queue.peek()); // Вывод: 1
+    queue.remove();
+    console.log(queue.peek()); // Вывод: 2
+    console.log(queue.isEmpty()); // Вывод: false
+    console.log(queue.size()); // Вывод: 2
+</script>
+
+</html>
