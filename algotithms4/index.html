@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*
+    Task 3. Given the head of a linked list, remove the n-th node from the end of the list and return its head.
+    */
+
+    function removeNthFromEnd(head, n) {
+        let dummy = new ListNode(0);  // Создаем фиктивный узел для обработки краевых случаев
+        dummy.next = head;
+        let first = dummy;
+        let second = dummy;
+
+        // Перемещаем второй указатель на n позиций вперед
+        for (let i = 0; i <= n; i++) {
+            second = second.next;
+        }
+
+        // Перемещаем оба указателя одновременно
+        while (second !== null) {
+            first = first.next;
+            second = second.next;
+        }
+
+        // Удаляем n-й узел, обновляя ссылку следующего узла у (n-1)-го узла
+        first.next = first.next.next;
+
+        return dummy.next;  // Возвращаем голову измененного связного списка
+    }
+
+    /*
+    
+    Task 4. You are given the heads of two sorted linked lists list1 and list2. Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists. Return the head of the merged linked list.
+    
+    
+    1 Создаем фиктивный узел (dummy node), который будет служить головой объединенного списка. 
+    
+    2.Инициализируем его как dummy = new ListNode(0).
+    Инициализируйте два указателя curr и prev, которые оба указывают на фиктивный узел.
+    
+    3.Пока и list1, и list2 не станут пустыми, сравнивайте значения текущих узлов двух списков.
+        Если значение в list1 меньше или равно, установить curr.next равным текущему узлу list1 и переместите list1 на следующий узел.
+    
+        Если значение в list2 меньше, установить curr.next равным текущему узлу list2 и переместите list2 на следующий узел.
+        
+        Переместите также curr на следующий узел.
+    
+    
+    4. Если после цикла выше один из списков list1 или list2 не пуст, добавьте оставшиеся узлы в конец объединенного списка.
+
+    5. Возвращаем dummy.next, который является головой объединенного списка.
+    */
+
+    function mergeTwoLists(list1, list2) {
+        let dummy = new ListNode(0);  // Создаем фиктивный узел в качестве головы объединенного списка
+        let curr = dummy;
+
+        while (list1 !== null && list2 !== null) {
+            if (list1.val <= list2.val) {
+                curr.next = list1;
+                list1 = list1.next;
+            } else {
+                curr.next = list2;
+                list2 = list2.next;
+            }
+            curr = curr.next;
+        }
+
+        // Добавляем оставшиеся узлы list1 или list2, если таковые имеются
+        curr.next = list1 !== null ? list1 : list2;
+
+        return dummy.next;  // Возвращаем голову объединенного списка
+    }
+
+
+</script>
+
+</html>
