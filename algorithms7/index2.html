@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    // Задача 1: Итерационный обход дерева в глубину
+    // Для решения данной задачи нам понадобится стек, который будет использоваться для хранения узлов дерева во время обхода. Мы будем по очереди извлекать узлы из стека, посещать их и добавлять их потомков в стек.
+    // Вот реализация итерационного обхода дерева в глубину:
+    function Node(value, left, right) {
+        this.value = value;
+        this.left = left;
+        this.right = right;
+    }
+
+    function depthFirstTraversal(root) {
+        if (!root) {
+            return;
+        }
+
+        const stack = [];
+        stack.push(root);
+
+        while (stack.length > 0) {
+            const node = stack.pop();
+            console.log(node.value); // Посещаем узел
+
+            if (node.right) {
+                stack.push(node.right);
+            }
+
+            if (node.left) {
+                stack.push(node.left);
+            }
+        }
+    }
+    // Теперь, чтобы протестировать функцию, создадим дерево и вызовем функцию depthFirstTraversal:
+
+    const tree = new Node(1,
+        new Node(2,
+            new Node(4),
+            new Node(5)),
+        new Node(3,
+            new Node(6),
+            new Node(7))
+    );
+
+    depthFirstTraversal(tree);
+
+    // В результате выполнения функции depthFirstTraversal мы получим обход дерева в глубину: 1, 2, 4, 5, 3, 6, 7.
+    // Теперь перейдем ко второй задаче.
+
+
+    // Задача 2: Вычисление высоты дерева
+
+    // Для решения этой задачи мы можем использовать рекурсивный подход. Высота дерева определяется как максимальная глубина (расстояние от корня до самого удаленного листового узла) в дереве.
+
+    // Вот реализация функции вычисления высоты дерева:
+
+    function calculateTreeHeight(root) {
+        if (!root) {
+            return 0;
+        }
+
+        const leftHeight = calculateTreeHeight(root.left);
+        const rightHeight = calculateTreeHeight(root.right);
+
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+    // Для тестирования функции создадим дерево и вызовем функцию calculateTreeHeight:
+
+    const tree = new Node(1,
+        new Node(2,
+            new Node(4),
+            new Node(5)),
+        new Node(3,
+            new Node(6),
+            new Node(7))
+    );
+
+    const height = calculateTreeHeight(tree);
+    console.log(height);
+</script>
+
+</html>
