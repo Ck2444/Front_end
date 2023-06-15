@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //  1. Реализовать итерационный алгоритм обхода дерева в глубину.
+    // Определение структуры узла дерева
+    class Node {
+        constructor(value) {
+            this.value = value;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+    // Функция для итерационного обхода дерева в глубину
+    function depthFirstTraversal(root) {
+        if (!root) {
+            return; // Если дерево пустое, завершаем функцию
+        }
+
+        const stack = []; // Создаем стек
+        stack.push(root); // Помещаем корневой узел в стек
+
+        while (stack.length > 0) {
+            const node = stack.pop(); // Извлекаем последний узел из стека
+
+            console.log(node.value); // Выполняем нужные действия с узлом (в данном случае, выводим его значение)
+
+            // Помещаем в стек сначала правый узел, а затем левый узел, чтобы обеспечить порядок обхода в глубину
+            if (node.right) {
+                stack.push(node.right);
+            }
+            if (node.left) {
+                stack.push(node.left);
+            }
+        }
+    }
+
+    // Пример использования
+    // Создаем дерево
+    const root = new Node(1);
+    root.left = new Node(2);
+    root.right = new Node(3);
+    root.left.left = new Node(4);
+    root.left.right = new Node(5);
+
+    // Вызываем функцию обхода дерева в глубину
+    depthFirstTraversal(root);
+
+    //============================================================================================================
+
+    //2 Метод удаления элемента из BST.
+    // Определение структуры узла дерева
+    class Node {
+        constructor(value) {
+            this.value = value;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+    // Функция для вставки элемента в BST
+    function insertNode(root, value) {
+        if (!root) {
+            return new Node(value);
+        }
+
+        if (value < root.value) {
+            root.left = insertNode(root.left, value);
+        } else {
+            root.right = insertNode(root.right, value);
+        }
+
+        return root;
+    }
+
+    // Функция для нахождения минимального элемента в BST
+    function findMinNode(node) {
+        while (node && node.left !== null) {
+            node = node.left;
+        }
+        return node;
+    }
+
+    // Функция для удаления элемента из BST
+    function deleteNode(root, value) {
+        if (!root) {
+            return null;
+        }
+
+        if (value < root.value) {
+            root.left = deleteNode(root.left, value);
+        } else if (value > root.value) {
+            root.right = deleteNode(root.right, value);
+        } else {
+            // Узел найден, выполняем удаление
+
+            // Случай 1: Узел без потомков
+            if (!root.left && !root.right) {
+                root = null;
+            }
+            // Случай 2: Узел с одним потомком
+            else if (!root.left) {
+                root = root.right;
+            } else if (!root.right) {
+                root = root.left;
+            }
+            // Случай 3: Узел с двумя потомками
+            else {
+                const minRightNode = findMinNode(root.right);
+                root.value = minRightNode.value;
+                root.right = deleteNode(root.right, minRightNode.value);
+            }
+        }
+
+        return root;
+    }
+
+    // Пример использования
+    // Создаем BST
+    let root = null;
+    root = insertNode(root, 50);
+    root = insertNode(root, 30);
+    root = insertNode(root, 70);
+    root = insertNode(root, 20);
+    root = insertNode(root, 40);
+    root = insertNode(root, 60);
+    root = insertNode(root, 80);
+
+    // Удаляем элемент со значением 30 из BST
+    root = deleteNode(root, 30);
+
+
+
+
+</script>
+
+</html>
